@@ -86,7 +86,6 @@ microtcp_connect (microtcp_sock_t *socket, const struct sockaddr *address,
 
 	//Start the handshake 
 	sender_header.seq_number = htonl(rand()%600); //N
-	//printf("microtcp connect sender_header %d \n", ntohl(sender_header.seq_number));
 	sender_header.ack_number = 0;
 	sender_header.control = htons(SYN);
 	sender_header.data_len = 0;
@@ -169,7 +168,6 @@ microtcp_connect (microtcp_sock_t *socket, const struct sockaddr *address,
 	socket->state=ESTABLISHED;
 	socket->seq_number = ntohl(sender_header.seq_number);
 	socket->ack_number = ntohl(sender_header.ack_number);
-	//printf("CHECK ACK %ld- SEQ %ld connect \n",socket->ack_number,socket->seq_number);
 	return 1;
 }
 
@@ -289,7 +287,6 @@ microtcp_accept (microtcp_sock_t *socket, struct sockaddr *address,
 		socket->ack_number = ntohl(receiver_header.seq_number);
 		socket->seq_number = ntohl(receiver_header.ack_number)+1;
 		printf("Server: Three way handshake is successfull! \n");
-		//printf("CHECK ACK %ld- SEQ %ld accept \n",socket->ack_number,socket->seq_number);
 		return 1;
 	}else{
 		perror("Invalid seq or ack in 3rd packet \n");
