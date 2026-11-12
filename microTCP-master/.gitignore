@@ -1,10 +1,22 @@
 *~
 *.pyc
 *.pyo
-build/
-apps/*.py
 .settings/
 .project
 .cproject
 .pyproject
 .pydevproject
+
+# CMake build output (in-source or out-of-source)
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.gch
+
+# Compiled binaries
+*.o
+*.out
+test/client
+test/server
